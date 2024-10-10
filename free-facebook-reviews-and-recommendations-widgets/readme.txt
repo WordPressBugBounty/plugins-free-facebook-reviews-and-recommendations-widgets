@@ -5,7 +5,7 @@ Tags: facebook, recommendations, reviews, facebook page, recommendation
 Requires at least: 3.0.1
 Tested up to: 6.6
 Requires PHP: 5.2
-Stable tag: 12.2
+Stable tag: 12.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Plugin Name: Widgets for Reviews &amp; Recommendations
@@ -14,7 +14,7 @@ Plugin URI: https://wordpress.org/plugins/free-facebook-reviews-and-recommendati
 Author: Trustindex.io <support@trustindex.io>
 Author URI: https://www.trustindex.io/
 Text Domain: free-facebook-reviews-and-recommendations-widgets
-Version: 12.2
+Version: 12.3
 
 Embed Facebook reviews fast and easily into your WordPress site. Increase SEO, trust and sales using Facebook recommendations.
 
@@ -52,6 +52,7 @@ If you don’t yet have any Facebook reviews, that’s not a problem. We recomme
 * 25+ Pre-designed widget styles
 * 1 Review widget
 * Filter reviews by rating
+* Display review reply
 * Hide any reviews
 * Language support
 * Shortcode integration
