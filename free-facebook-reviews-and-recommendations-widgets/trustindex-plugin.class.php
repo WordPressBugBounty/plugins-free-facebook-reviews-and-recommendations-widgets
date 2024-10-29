@@ -772,7 +772,7 @@ public function shortcode_func($atts)
 {
 $atts = shortcode_atts([ 'data-widget-id' => null, 'no-registration' => null ], $atts);
 if (isset($atts['data-widget-id']) && $atts['data-widget-id']) {
-return $chosedPlatform->renderWidgetFrontend($atts['data-widget-id']);
+return $this->renderWidgetFrontend($atts['data-widget-id']);
 }
 else if (isset($atts['no-registration']) && $atts['no-registration']) {
 $forcePlatform = $atts['no-registration'];
@@ -788,7 +788,7 @@ $className = 'TrustindexPlugin_' . $forcePlatform;
 if (!class_exists($className)) {
 return $this->frontEndErrorForAdmins(ucfirst($forcePlatform) . ' plugin is not active or not found!');
 }
-$chosedPlatform = new $className($forcePlatform, $filePath, "do-not-care-12.4", "do-not-care-Widgets for Reviews & Recommendations", "do-not-care-Facebook");
+$chosedPlatform = new $className($forcePlatform, $filePath, "do-not-care-12.4.1", "do-not-care-Widgets for Reviews & Recommendations", "do-not-care-Facebook");
 $chosedPlatform->setNotificationParam('not-using-no-widget', 'active', false);
 if (!$chosedPlatform->is_noreg_linked()) {
 return $this->frontEndErrorForAdmins(sprintf(__('You have to connect your business (%s)!', 'trustindex-plugin'), $forcePlatform));
@@ -4319,7 +4319,7 @@ public static $widget_reply_by_texts = array (
  'zh' => '版主回覆',
 );
 private static $page_urls = array (
- 'facebook' => 'https://www.facebook.com/pg/%page_id%',
+ 'facebook' => 'https://www.facebook.com/%page_id%',
  'google' => 'https://www.google.com/maps/search/?api=1&query=Google&query_place_id=%page_id%',
  'tripadvisor' => 'https://www.tripadvisor.com/%page_id%',
  'yelp' => 'https://www.yelp.com/biz/%25page_id%25',
