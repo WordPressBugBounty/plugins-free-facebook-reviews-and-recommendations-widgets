@@ -9,7 +9,7 @@ Author: Trustindex.io <support@trustindex.io>
 Author URI: https://www.trustindex.io/
 Contributors: trustindex
 License: GPLv2 or later
-Version: 12.4.2
+Version: 12.4.3
 Text Domain: free-facebook-reviews-and-recommendations-widgets
 Domain Path: /languages
 Donate link: https://www.trustindex.io/prices/
@@ -20,7 +20,7 @@ Copyright 2019 Trustindex Kft (email: support@trustindex.io)
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 require_once plugin_dir_path(__FILE__) . 'include' . DIRECTORY_SEPARATOR . 'cache-plugin-filters.php';
 require_once plugin_dir_path(__FILE__) . 'trustindex-plugin.class.php';
-$trustindex_pm_facebook = new TrustindexPlugin_facebook("facebook", __FILE__, "12.4.2", "Widgets for Reviews & Recommendations", "Facebook");
+$trustindex_pm_facebook = new TrustindexPlugin_facebook("facebook", __FILE__, "12.4.3", "Widgets for Reviews & Recommendations", "Facebook");
 $pluginManagerInstance = $trustindex_pm_facebook;
 register_activation_hook(__FILE__, [ $pluginManagerInstance, 'activate' ]);
 register_deactivation_hook(__FILE__, [ $pluginManagerInstance, 'deactivate' ]);
@@ -81,11 +81,6 @@ return;
 }
 add_action('admin_notices', 'ti_woocommerce_notice');
 }
-add_action('parse_request', function() use ($pluginManagerInstance) {
-if (isset($_GET[$pluginManagerInstance->frontendWidgetAction(true)])) {
-$pluginManagerInstance->frontendWidgetAction();
-}
-});
 add_action('admin_notices', function() use ($pluginManagerInstance) {
 foreach ($pluginManagerInstance->getNotificationOptions() as $type => $options) {
 if (!$pluginManagerInstance->isNotificationActive($type)) {
