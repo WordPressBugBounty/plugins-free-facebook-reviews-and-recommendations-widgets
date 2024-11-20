@@ -195,12 +195,6 @@ return basename($this->get_plugin_dir());
 }
 
 
-public function output_buffer()
-{
-ob_start();
-}
-
-
 public function uninstall()
 {
 $this->delete_async_request();
@@ -788,7 +782,7 @@ $className = 'TrustindexPlugin_' . $forcePlatform;
 if (!class_exists($className)) {
 return $this->frontEndErrorForAdmins(ucfirst($forcePlatform) . ' plugin is not active or not found!');
 }
-$chosedPlatform = new $className($forcePlatform, $filePath, "do-not-care-12.4.3", "do-not-care-Widgets for Reviews & Recommendations", "do-not-care-Facebook");
+$chosedPlatform = new $className($forcePlatform, $filePath, "do-not-care-12.4.4", "do-not-care-Widgets for Reviews & Recommendations", "do-not-care-Facebook");
 $chosedPlatform->setNotificationParam('not-using-no-widget', 'active', false);
 if (!$chosedPlatform->is_noreg_linked()) {
 return $this->frontEndErrorForAdmins(sprintf(__('You have to connect your business (%s)!', 'trustindex-plugin'), $forcePlatform));
@@ -952,7 +946,7 @@ public static $widget_templates = array (
  'sidebar' => '6,7,8,9,10,18,54,81',
  'list' => '33,80',
  'grid' => '16,31,38,48,79',
- 'badge' => '11,12,20,22,23,55,56,57,58,97,98,99,100,101,102,103,104',
+ 'badge' => '11,12,20,22,23,55,56,57,58,97,98,99,100,101,102,103,104,107',
  'button' => '24,25,26,27,28,29,30,32,35,59,60,61,62,106',
  'floating' => '17,21,52,53',
  'popup' => '23,30,32',
@@ -1408,9 +1402,9 @@ public static $widget_templates = array (
  array (
  ),
  ),
- 22 => 
+ 107 => 
  array (
- 'name' => 'Company badge I.',
+ 'name' => 'HTML badge V.',
  'type' => 'badge',
  'is-active' => true,
  'is-top-rated-badge' => false,
@@ -1418,9 +1412,9 @@ public static $widget_templates = array (
  array (
  ),
  ),
- 23 => 
+ 22 => 
  array (
- 'name' => 'Company badge I. - with popup',
+ 'name' => 'Company badge I.',
  'type' => 'badge',
  'is-active' => true,
  'is-top-rated-badge' => false,
@@ -1433,6 +1427,16 @@ public static $widget_templates = array (
  'name' => 'HTML badge V.',
  'type' => 'badge',
  'is-active' => false,
+ 'is-top-rated-badge' => false,
+ 'params' => 
+ array (
+ ),
+ ),
+ 23 => 
+ array (
+ 'name' => 'Company badge I. - with popup',
+ 'type' => 'badge',
+ 'is-active' => true,
  'is-top-rated-badge' => false,
  'params' => 
  array (
@@ -1558,21 +1562,21 @@ public static $widget_templates = array (
  array (
  ),
  ),
- 106 => 
- array (
- 'name' => 'Button VIII.',
- 'type' => 'button',
- 'is-active' => true,
- 'is-top-rated-badge' => false,
- 'params' => 
- array (
- ),
- ),
  59 => 
  array (
  'name' => 'Button VIII.',
  'type' => 'button',
  'is-active' => false,
+ 'is-top-rated-badge' => false,
+ 'params' => 
+ array (
+ ),
+ ),
+ 106 => 
+ array (
+ 'name' => 'Button VIII.',
+ 'type' => 'button',
+ 'is-active' => true,
  'is-top-rated-badge' => false,
  'params' => 
  array (
@@ -4415,13 +4419,13 @@ if ($reviews = $this->getReviewsForWidgetHtml()) {
 $templateId = 'trustindex-'.$this->getShortName().'-widget-html';
 $attributes['data-src'] .= 'wp-widget';
 $attributes['data-template-id'] = $templateId;
-$preContent = '<template id="'.esc_attr($templateId).'">'.$this->getWidgetHtml($reviews);
+$preContent = '<pre class="ti-widget" style="display: none"><template id="'.esc_attr($templateId).'">'.$this->getWidgetHtml($reviews);
 if (is_file($this->getCssFile()) && !get_option($this->get_option_name('load-css-inline'), 0)) {
 $attributes['data-css-url'] = $this->getCssUrl().'?'.filemtime($this->getCssFile());
 } else {
 $preContent .= '<style type="text/css">'.get_option($this->get_option_name('css-content')).'</style>';
 }
-$preContent .= '</template>';
+$preContent .= '</template></pre>';
 } else {
 $text = sprintf(__('There are no reviews on your %s platform.', 'trustindex-plugin'), ucfirst($this->getShortName()));
 
@@ -4741,7 +4745,7 @@ $content = str_replace('platform/'. ucfirst($this->getShortName()) .'/logo', 'pl
 if ($this->is_ten_scale_rating_platform() && $styleId === 11) {
 $content = str_replace('<span class="ti-rating">'. $ratingScore .'</span> ', '', $content);
 }
-if (in_array($styleId, [8, 10, 11, 12, 13, 20, 22, 24, 25, 26, 27, 28, 29, 35, 55, 56, 57, 58, 59, 60, 61, 62, 106])) {
+if (in_array($styleId, [8, 10, 11, 12, 13, 20, 22, 24, 25, 26, 27, 28, 29, 35, 55, 56, 57, 58, 59, 60, 61, 62, 106, 107])) {
 if (!$this->getWidgetOption('show-header-button', false, $isPreview)) {
 $content = preg_replace('/<!-- HEADER-BUTTON-START.+HEADER-BUTTON-END -->/s', '', $content);
 }
