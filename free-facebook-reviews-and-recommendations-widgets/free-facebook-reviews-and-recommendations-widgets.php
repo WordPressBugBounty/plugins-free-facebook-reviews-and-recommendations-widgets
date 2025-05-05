@@ -9,7 +9,7 @@ Author: Trustindex.io <support@trustindex.io>
 Author URI: https://www.trustindex.io/
 Contributors: trustindex
 License: GPLv2 or later
-Version: 12.7.2
+Version: 12.7.3
 Requires at least: 3.0.1
 Requires PHP: 5.2
 Text Domain: free-facebook-reviews-and-recommendations-widgets
@@ -22,7 +22,7 @@ Copyright 2019 Trustindex Kft (email: support@trustindex.io)
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 require_once plugin_dir_path(__FILE__) . 'include' . DIRECTORY_SEPARATOR . 'cache-plugin-filters.php';
 require_once plugin_dir_path(__FILE__) . 'trustindex-plugin.class.php';
-$trustindex_pm_facebook = new TrustindexPlugin_facebook("facebook", __FILE__, "12.7.2", "Widgets for Reviews & Recommendations", "Facebook");
+$trustindex_pm_facebook = new TrustindexPlugin_facebook("facebook", __FILE__, "12.7.3", "Widgets for Reviews & Recommendations", "Facebook");
 $pluginManager = 'TrustindexPlugin_facebook';
 $pluginManagerInstance = $trustindex_pm_facebook;
 add_action('admin_init', function() { ob_start(); });
