@@ -6,8 +6,8 @@ defined('ABSPATH') or die('No script kiddies please!');
 <div class="ti-box-header"><?php echo esc_html(__('Skyrocket Your Sales with Customer Reviews', 'free-facebook-reviews-and-recommendations-widgets')); ?></div>
 <p class="ti-bold">
 <?php
-/* translators: %s: user number (800.000) */
-echo esc_html(sprintf(__('%s+ WordPress websites use Trustindex to embed reviews fast and easily.', 'free-facebook-reviews-and-recommendations-widgets'), '800.000'));
+/* translators: %s: user number (900.000) */
+echo esc_html(sprintf(__('%s+ WordPress websites use Trustindex to embed reviews fast and easily.', 'free-facebook-reviews-and-recommendations-widgets'), '900.000'));
 ?><br />
 <?php echo esc_html(__('Increase SEO, trust and sales using customer reviews.', 'free-facebook-reviews-and-recommendations-widgets')); ?>
 </p>
