@@ -141,7 +141,7 @@ return admin_url('admin-ajax.php') . '?action='. $this->getWebhookAction();
 public function getProFeatureButton($campaignId)
 {
 
-return '<a class="ti-btn" href="https://lp.trustindex.io/'.$this->getShortName().'-wp/?a=sys&c='. $campaignId .'" target="_blank">'. __('Create a Free Account for More Features', 'free-facebook-reviews-and-recommendations-widgets') .'</a>';
+return '<a class="ti-btn" href="https://www.trustindex.io/?a=sys&c='. $campaignId .'" target="_blank">'. __('Create a Free Account for More Features', 'free-facebook-reviews-and-recommendations-widgets') .'</a>';
 }
 public function is_review_download_in_progress()
 {
@@ -927,7 +927,7 @@ $className = 'TrustindexPlugin_' . $forcePlatform;
 if (!class_exists($className)) {
 return wp_kses_post($this->frontEndErrorForAdmins(ucfirst($forcePlatform) . ' plugin is not active or not found!'));
 }
-$chosedPlatform = new $className($forcePlatform, $filePath, "do-not-care-13.2.9", "do-not-care-Widgets for Reviews & Recommendations", "do-not-care-Facebook");
+$chosedPlatform = new $className($forcePlatform, $filePath, "do-not-care-13.3.1", "do-not-care-Widgets for Reviews & Recommendations", "do-not-care-Facebook");
 $chosedPlatform->setNotificationParam('not-using-no-widget', 'active', false);
 if (!$chosedPlatform->is_noreg_linked()) {
 /* translators: %s: Platform name */
@@ -6557,9 +6557,9 @@ $styleId = (int)$this->getWidgetOption('style-id');
 $setId = $this->getWidgetOption('scss-set');
 $language = $this->getWidgetOption('lang', false, $isPreview);
 $widgetTemplate = self::$widget_templates['templates'][$styleId];
-$showStars = $this->getWidgetOption('show-stars', false, $isPreview);
-if (self::$widget_styles[$setId]['hide-stars'] === 'custom') {
-$showStars = 'custom';
+$showStars = (int) $this->getWidgetOption('show-stars', false, $isPreview);
+if ('custom' === self::$widget_styles[$setId]['hide-stars']) {
+$showStars = 2;
 }
 preg_match('/<!-- R-LIST -->(.*)<!-- R-LIST -->/', $content, $matches);
 if (isset($matches[1])) {
@@ -6581,7 +6581,7 @@ $date = str_replace(self::$widget_month_names['en'], self::$widget_month_names[$
 }
 }
 $ratingContent = $this->get_rating_stars($r->rating, $showStars);
-if ($showStars === true) {
+if (1 === $showStars) {
 
 if (in_array($r->rating, [ 1, 5 ])) {
 if ($r->rating == 1) {
@@ -6744,6 +6744,7 @@ $this->get_rating_stars($this->is_ten_scale_rating_platform() ? $ratingScore / 2
 ], $content);
 if (!in_array($widgetTemplate['type'], [ 'button', 'badge', 'top-rated-badge', 'fomo' ]) && !$this->getWidgetOption('show-logos', false, $isPreview)) {
 $content = preg_replace('/<img class="ti-platform-icon".+>/U', '', $content);
+$content = preg_replace('/<img src="[^"]+\/assets\/platform\/[^"]+".+>/U', '', $content);
 }
 if ($this->is_ten_scale_rating_platform() && $styleId === 11) {
 $content = str_replace('<span class="ti-rating">'. $ratingScore .'</span> ', '', $content);
@@ -6790,7 +6791,7 @@ if ($this->isFomoCustomWidget() || $this->getFomoSubtitleTextChoices()) {
 if ($text = $this->getWidgetOption('fomo-title', false, $isPreview)) {
 $content = preg_replace(
 '/<div class="ti-title-text">(.+)<\/div>/U',
-'<div class="ti-title-text">'.$text.'</div>',
+'<div class="ti-title-text">'.wp_kses($text, ['u' => []]).'</div>',
 $content
 );
 }
@@ -6807,7 +6808,7 @@ $text = $widgetTemplate['params']['trans'][$language][$text];
 }
 $content = preg_replace(
 '/<div class="ti-subtitle-text">(.+)<\/div>/U',
-'<div class="ti-subtitle-text">'.$text.'</div>',
+'<div class="ti-subtitle-text">'.wp_kses($text, ['u' => []]).'</div>',
 $content
 );
 }
@@ -7060,7 +7061,7 @@ $rating = 5;
 }
 return $texts[ $rating - 1 ];
 }
-public function get_rating_stars($ratingScore, $platformStars = true)
+public function get_rating_stars($ratingScore, $platformStars)
 {
 $text = "";
 if (!is_numeric($ratingScore)) {
@@ -7068,18 +7069,18 @@ return $text;
 }
 $platform = ucfirst($this->getShortName());
 $altPlatform = $platform;
-if (!$platformStars) {
+if (0 === $platformStars) {
 $platform = 'Default';
 }
 $fullStarUrl = '<img class="ti-star" src="https://cdn.trustindex.io/assets/platform/'.$platform.'/star/f.svg" alt="'.$altPlatform.' star %star-number%" width="17" height="17" loading="lazy" />';
-if ('custom' === $platformStars) {
+if (2 === $platformStars) {
 $fullStarUrl = '<span class="ti-star f"></span>';
 }
 for ($si = 1; $si <= $ratingScore; $si++) {
 $text .= str_replace('%star-number%', $si, $fullStarUrl);
 }
 $fractional = $ratingScore - floor($ratingScore);
-if(0.25 <= $fractional) {
+if (0.25 <= $fractional) {
 if ($fractional < 0.75) {
 $text .= preg_replace('/f(\.svg)?"/', 'h$1"', str_replace('%star-number%', $si.'.'.$fractional, $fullStarUrl));
 }
