@@ -2,8 +2,8 @@
 Contributors: trustindex
 Donate link: https://www.trustindex.io/prices/
 Tags: facebook, recommendations, reviews, facebook page, recommendation
-Tested up to: 7.0
-Stable tag: 13.3.1
+Tested up to: 7.1
+Stable tag: 13.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Plugin Name: Widgets for Reviews &amp; Recommendations
@@ -12,7 +12,7 @@ Plugin URI: https://wordpress.org/plugins/free-facebook-reviews-and-recommendati
 Author: Trustindex.io <support@trustindex.io>
 Author URI: https://www.trustindex.io/
 Text Domain: free-facebook-reviews-and-recommendations-widgets
-Version: 13.3.1
+Version: 13.3.2
 
 Embed Facebook reviews fast and easily into your WordPress site. Increase SEO, trust and sales using Facebook recommendations.
 
@@ -67,7 +67,7 @@ If you don’t yet have any Facebook reviews, that’s not a problem. We recomme
 
 ### Get more features with our professional review software
 
-[Create a Free Account for More Features](https://www.trustindex.io/ti-redirect.php?a=sys-wp&c=facebook.php-r1)
+[Create a Free Account for More Features](https://www.trustindex.io/?a=sys&c=wp-facebook.php-r1)
 
 * Display all reviews from Google, Facebook, Yelp, Amazon, Tripadvisor, Booking.com, AirBnb, Hotels.com, ...
 * Display reviews from different platforms in a widget
@@ -89,7 +89,7 @@ If you don’t yet have any Facebook reviews, that’s not a problem. We recomme
 * Priority support
 * AMP support
 
-[Create a Free Account for More Features](https://www.trustindex.io/ti-redirect.php?a=sys-wp&c=facebook.php-r2)
+[Create a Free Account for More Features](https://www.trustindex.io/?a=sys&c=wp-facebook.php-r2)
 
 == Screenshots ==
 
